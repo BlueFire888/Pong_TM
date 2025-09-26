@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnfq7bkovrrqt"]
+
+[ext_resource type="Script" path="res://scripts/game_world.gd" id="1_1xvjr"]
+[ext_resource type="Script" path="res://scripts/right_paddle.gd" id="2_0ntun"]
+[ext_resource type="Script" path="res://scripts/left_paddle.gd" id="2_u0wfe"]
+[ext_resource type="Texture2D" uid="uid://lumcg14h0hs0" path="res://arts/Player.png" id="3_8xlei"]
+[ext_resource type="Texture2D" uid="uid://chdrh0nsnwo4" path="res://arts/Computer.png" id="3_epely"]
+[ext_resource type="Texture2D" uid="uid://dm5te5qn81j84" path="res://arts/Ball.png" id="6_4mok6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ajnw"]
+size = Vector2(23, 123)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6f415"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ip4xc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvwk8"]
+radius = 16.0
+
+[node name="game_world" type="Node2D"]
+script = ExtResource("1_1xvjr")
+
+[node name="left_paddle" type="StaticBody2D" parent="."]
+position = Vector2(264, 159)
+script = ExtResource("2_u0wfe")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="left_paddle"]
+texture = ExtResource("3_epely")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_paddle"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_6ajnw")
+metadata/_edit_group_ = true
+
+[node name="right_paddle" type="StaticBody2D" parent="."]
+position = Vector2(512, 160)
+script = ExtResource("2_0ntun")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="right_paddle"]
+texture = ExtResource("3_8xlei")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_paddle"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_6ajnw")
+metadata/_edit_group_ = true
+
+[node name="worldboundry" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Upper_CollisionShape2D" type="CollisionShape2D" parent="worldboundry"]
+shape = SubResource("WorldBoundaryShape2D_6f415")
+
+[node name="Bottom_CollisionShape2D" type="CollisionShape2D" parent="worldboundry"]
+shape = SubResource("WorldBoundaryShape2D_ip4xc")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(96, 48)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("6_4mok6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_vvwk8")

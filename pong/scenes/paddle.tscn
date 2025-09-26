@@ -6,6 +6,8 @@
 size = Vector2(23, 123)
 
 [node name="paddle" type="StaticBody2D"]
+position = Vector2(374, 131)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
