@@ -6,14 +6,5 @@ func _ready():
 	$right_paddle.position = init_pos
 	init_pos = Vector2((screen_size.x * 0.166),(screen_size.y / 2))
 	$left_paddle.position = init_pos
-
-func _physics_process(delta):
-	if Input.is_action_pressed("ui_up"):
-		$right_paddle.position += Vector2(0,-10)
-	if Input.is_action_pressed("ui_down"):
-		$right_paddle.position += Vector2(0,10)
-	if Input.is_action_pressed("UP"):
-		$left_paddle.position += Vector2(0,-10)
-	if Input.is_action_pressed("DOWN"):
-		$left_paddle.position += Vector2(0,10)
-		
+	$worldboundry/Bottom_CollisionShape2D.position = Vector2(0,screen_size.y)
+	$Ball.position = Vector2(screen_size.x/2,screen_size.y/2)
