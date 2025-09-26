@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnfq7bkovrrqt"]
+[gd_scene load_steps=12 format=3 uid="uid://bnfq7bkovrrqt"]
 
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_1xvjr"]
 [ext_resource type="Script" path="res://scripts/right_paddle.gd" id="2_0ntun"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://lumcg14h0hs0" path="res://arts/Player.png" id="3_8xlei"]
 [ext_resource type="Texture2D" uid="uid://chdrh0nsnwo4" path="res://arts/Computer.png" id="3_epely"]
 [ext_resource type="Texture2D" uid="uid://dm5te5qn81j84" path="res://arts/Ball.png" id="6_4mok6"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="6_412wc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ajnw"]
 size = Vector2(23, 123)
@@ -61,6 +62,7 @@ shape = SubResource("WorldBoundaryShape2D_ip4xc")
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(96, 48)
 gravity_scale = 0.0
+script = ExtResource("6_412wc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 texture = ExtResource("6_4mok6")
