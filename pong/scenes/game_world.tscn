@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnfq7bkovrrqt"]
+[gd_scene load_steps=13 format=3 uid="uid://bnfq7bkovrrqt"]
 
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_1xvjr"]
 [ext_resource type="Script" path="res://scripts/right_paddle.gd" id="2_0ntun"]
@@ -6,14 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://lumcg14h0hs0" path="res://arts/Player.png" id="3_8xlei"]
 [ext_resource type="Texture2D" uid="uid://chdrh0nsnwo4" path="res://arts/Computer.png" id="3_epely"]
 [ext_resource type="Texture2D" uid="uid://dm5te5qn81j84" path="res://arts/Ball.png" id="6_4mok6"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="6_ms8hy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ajnw"]
-size = Vector2(23, 123)
+size = Vector2(18, 123)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6f415"]
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ip4xc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6qy6n"]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vvwk8"]
 radius = 16.0
@@ -31,7 +36,7 @@ texture = ExtResource("3_epely")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_paddle"]
-position = Vector2(1, -1)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_6ajnw")
 metadata/_edit_group_ = true
 
@@ -45,7 +50,7 @@ texture = ExtResource("3_8xlei")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right_paddle"]
-position = Vector2(1, -1)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_6ajnw")
 metadata/_edit_group_ = true
 
@@ -60,10 +65,15 @@ shape = SubResource("WorldBoundaryShape2D_ip4xc")
 
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(96, 48)
+physics_material_override = SubResource("PhysicsMaterial_6qy6n")
 gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("6_ms8hy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 texture = ExtResource("6_4mok6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("CircleShape2D_vvwk8")
+
+[connection signal="body_entered" from="Ball" to="Ball" method="_on_body_entered"]
